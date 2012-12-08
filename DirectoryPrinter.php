@@ -5,25 +5,59 @@ require_once 'AdvancedDirectoryIterator.php';
 
 class DirectoryPrinter
 {
-	public function printDirectory($directoryPattern)
+	protected $directoryPattern;
+
+	public function __construct($directoryPattern = null)
 	{
-		$files = array();
+		$this->setDirectoryPattern($directoryPattern);
+	}
+
+	public function printDirectory()
+	{
+		$allFiles = $this->getFileArrays();
 
 		/** @var $file DirectoryIterator */
-		foreach (new AdvancedDirectoryIterator($directoryPattern) as $file) {
-			$files[] = $file;
-		}
-
-		foreach ($files as $file) {
-			$mp3CssTag = '';
-			$name = $file->getFilename();
-
-			if (strpos($name, '.mp3', strlen($name - 4) !== false)) {
-				$mp3CssTag = ' class="mp3" ';
-			}
-
-			print '<a href="' . $file->getPathname() . '"' . $mp3CssTag . '>' . $file->getPathname() . '</a><br />';
-
+		foreach ($allFiles['musicFiles'] as $file) {
+			print '<a class="music" href="' . $file->getPathname() . '">' . $file->getPathname() . '</a><br />';
 		}
 	}
+
+	protected function getFileArrays()
+	{
+		$allFiles = $musicFiles = $otherFiles = array();
+
+		/** @var $file DirectoryIterator */
+		foreach (new AdvancedDirectoryIterator($this->directoryPattern) as $file) {
+			$extension = $file->getExtension();
+			if (in_array($extension, array('mp3', 'ogg'))) { // need a more complete list of music formats
+				$musicFiles[] = $file;
+			}
+			else {
+				$otherFiles[] = $file;
+			}
+
+			$allFiles[] = $file;
+		}
+
+		$return = array(
+			'allFiles' => $allFiles,
+			'musicFiles' => $musicFiles,
+			'otherFiles' => $otherFiles,
+		);
+
+		return $return;
+	}
+
+	public function getDirectoryPattern()
+	{
+		return $this->directoryPattern;
+	}
+
+	public function setDirectoryPattern($directoryPattern)
+	{
+		if ($directoryPattern) {
+			$this->directoryPattern = $directoryPattern;
+		}
+	}
+
 }
