@@ -142,6 +142,7 @@ $printer = new DirectoryPrinter('-R ../uploads/');
 							break;
 
 						case 'all':
+						default:
 							$printer->printAllDirectory();
 							break;
 					}
