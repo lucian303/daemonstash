@@ -120,6 +120,7 @@ $printer = new DirectoryPrinter();
 			</div>
 			<div class="row-fluid">
 				<div class="span4">
+					<?php $printer->printDirectory('-R ./uploads/'); ?>
 				</div>
 				<div class="span4">
 				</div>
