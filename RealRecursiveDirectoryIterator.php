@@ -4,6 +4,7 @@
  */
 class RealRecursiveDirectoryIterator extends RecursiveIteratorIterator
 {
+
 	/**
 	 * Creates Real Recursive Directory Iterator
 	 * @param string $path
@@ -14,4 +15,5 @@ class RealRecursiveDirectoryIterator extends RecursiveIteratorIterator
 	{
 		parent::__construct(new RecursiveDirectoryIterator($path, $flags));
 	}
+
 }

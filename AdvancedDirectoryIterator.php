@@ -6,6 +6,7 @@
  */
 class AdvancedDirectoryIterator extends FilterIterator
 {
+
 	/**
 	 * Regex storage
 	 * @var string
@@ -42,4 +43,5 @@ class AdvancedDirectoryIterator extends FilterIterator
 	{ // FilterIterator method
 		return $this->regex === null ? true : preg_match($this->regex, $this->getInnerIterator()->getFilename());
 	}
+
 }

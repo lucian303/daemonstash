@@ -5,6 +5,7 @@ require_once 'AdvancedDirectoryIterator.php';
 
 class DirectoryPrinter
 {
+
 	protected $directoryPattern;
 
 	public function __construct($directoryPattern = null)
