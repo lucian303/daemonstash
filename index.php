@@ -64,17 +64,17 @@ $printer = new DirectoryPrinter('-R ../uploads/');
 			<div class="nav-collapse">
 				<ul class="nav">
 					<li>
-						<a href="#">
+						<a href="?type=all">
 							All
 						</a>
 					</li>
 					<li>
-						<a href="#">
+						<a href="?type=music">
 							Music
 						</a>
 					</li>
 					<li>
-						<a href="#">
+						<a href="?type=other">
 							Other
 						</a>
 					</li>
@@ -96,17 +96,17 @@ $printer = new DirectoryPrinter('-R ../uploads/');
 					<li>
 					</li>
 					<li class="">
-						<a href="#">
+						<a href="?type=all">
 							All
 						</a>
 					</li>
 					<li class="">
-						<a href="#">
+						<a href="?type=music">
 							Music
 						</a>
 					</li>
 					<li class="">
-						<a href="#">
+						<a href="?type=other">
 							Other
 						</a>
 					</li>
