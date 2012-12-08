@@ -151,6 +151,11 @@ $printer = new DirectoryPrinter('-R ../uploads/');
 			</div>
 			<div class="row-fluid">
 			</div>
+			<div class="span12">
+				<br />
+			</div>
+			<div class="row-fluid">
+			</div>
 			<div class="span4">
 			</div>
 			<div>
