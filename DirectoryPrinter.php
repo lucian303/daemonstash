@@ -14,14 +14,29 @@ class DirectoryPrinter
 
 	public function printMusicDirectory()
 	{
+		$this->printDirectory('musicFiles');
+	}
+
+	public function printOtherDirectory()
+	{
+		$this->printDirectory('otherFiles');
+	}
+
+	public function printAllDirectory()
+	{
+		$this->printDirectory('allFiles');
+	}
+
+	protected function printDirectory($type)
+	{
 		$allFiles = $this->getFileArrays();
-		sort($allFiles['musicFiles'], SORT_LOCALE_STRING);
+		sort($allFiles[$type], SORT_LOCALE_STRING);
 
 		/** @var $file DirectoryIterator */
-		foreach ($allFiles['musicFiles'] as $file) {
+		foreach ($allFiles[$type] as $file) {
 			$directoryPattern = trim(str_replace('-R', '', $this->directoryPattern));
 			$prettyName = str_replace($directoryPattern, '', $file->getPathname());
-			print '<a class="music" href="' . $file->getPathname() . '">' . $prettyName . '</a><br />';
+			print '<a class="'. $type . '" href="' . $file->getPathname() . '">' . $prettyName . '</a><br />';
 		}
 	}
 

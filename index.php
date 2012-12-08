@@ -20,9 +20,15 @@ $printer = new DirectoryPrinter('-R ../uploads/');
 				  to the bottom of the topbar */
 		}
 
-		.music {
+		.musicFiles {
 			color: red;
 			font-weight: bold;
+		}
+		.otherFiles {
+			color: #006400;
+		}
+		.allFiles {
+			color: blue;
 		}
 	</style>
 	<link href="assets/css/bootstrap-responsive.css" rel="stylesheet">
@@ -125,7 +131,21 @@ $printer = new DirectoryPrinter('-R ../uploads/');
 			</div>
 			<div class="row-fluid">
 				<div class="span12">
-					<?php $printer->printMusicDirectory(); ?>
+					<?php
+					switch ($_GET['type']) {
+						case 'music':
+							$printer->printMusicDirectory();
+							break;
+
+						case 'other':
+							$printer->printOtherDirectory();
+							break;
+
+						case 'all':
+							$printer->printAllDirectory();
+							break;
+					}
+					?>
 				</div>
 				<!--				<div class="span4">-->
 				<!--				</div>-->
