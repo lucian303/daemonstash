@@ -125,7 +125,7 @@ $printer = new DirectoryPrinter('-R ../uploads/');
 						understand the DS! -- Oldboy
 					</p>
 				</div>
-				<a class="btn btn-primary" href="#">
+				<a class="btn btn-primary" href="http://bit.ly/UtgAE8">
 					Get me the fuck out of here before I die;
 				</a>
 			</div>
