@@ -1,8 +1,7 @@
 <?php
 
-//require getcwd() . '/vendor/autoload.php';
-
-require_once __DIR__ . '/../src/DaemonDash/Directory/DirectoryPrinter.php';
+//require '..//vendor/autoload.php';
+require_once '../src/DaemonDash/Directory/DirectoryPrinter.php';
 
 // look for uploads directory out of the web root
 $printer = new DirectoryPrinter('-R ../../uploads/');
