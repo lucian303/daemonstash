@@ -58,7 +58,7 @@ $printer = new DirectoryPrinter('-R ../uploads/');
             <span class="icon-bar">
             </span>
 			</a>
-			<a class="brand" href="#">
+			<a class="brand" href="?type=all">
 				DaemonStash
 			</a>
 
