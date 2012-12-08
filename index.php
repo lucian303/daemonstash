@@ -1,10 +1,10 @@
 <?php
 
-//require '..//vendor/autoload.php';
-require_once '../src/DaemonDash/Directory/DirectoryPrinter.php';
+require 'vendor/autoload.php';
+require_once 'DirectoryPrinter.php';
 
 // look for uploads directory out of the web root
-$printer = new DirectoryPrinter('-R ../../uploads/');
+$printer = new DirectoryPrinter('-R ../uploads/');
 ?>
 <!DOCTYPE html>
 <html lang="en">
