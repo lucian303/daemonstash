@@ -1,6 +1,6 @@
 <?php
 require_once 'DirectoryPrinter.php';
-$printer = new DirectoryPrinter();
+$printer = new DirectoryPrinter('-R ./uploads/');
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -18,6 +18,11 @@ $printer = new DirectoryPrinter();
 			padding-top: 60px;
 			/* 60px to make the container go all the way
 				  to the bottom of the topbar */
+		}
+
+		.music {
+			color: red;
+			font-weight: bold;
 		}
 	</style>
 	<link href="assets/css/bootstrap-responsive.css" rel="stylesheet">
@@ -119,29 +124,28 @@ $printer = new DirectoryPrinter();
 				</a>
 			</div>
 			<div class="row-fluid">
-				<div class="span4">
-					<?php $printer->printDirectory('-R ./uploads/'); ?>
+				<div class="span12">
+					<?php $printer->printDirectory(); ?>
 				</div>
-				<div class="span4">
-				</div>
-				<div class="span4">
-				</div>
+				<!--				<div class="span4">-->
+				<!--				</div>-->
+				<!--				<div class="span4">-->
+				<!--				</div>-->
 			</div>
 			<div class="row-fluid">
 			</div>
 			<div class="span4">
 			</div>
 			<div>
-				some shit here
+				some shit here ...
 			</div>
 		</div>
 	</div>
 </div>
-<hr>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js">
-</script>
-<script src="assets/js/bootstrap.js">
-</script>
+
+<script src="/assets/js/jquery-1.8.3.min.js"></script>
+<script src="assets/js/bootstrap.js"></script>
+
 </body>
 
 </html>
