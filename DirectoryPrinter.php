@@ -24,6 +24,7 @@ class DirectoryPrinter
 
 	public function printAllDirectory()
 	{
+		// TODO: Color each one properly when printing all
 		$this->printDirectory('allFiles');
 	}
 
