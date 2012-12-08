@@ -1,6 +1,6 @@
 <?php
 require_once 'DirectoryPrinter.php';
-$printer = new DirectoryPrinter('-R ./uploads/');
+$printer = new DirectoryPrinter('-R ../uploads/');
 ?>
 <!DOCTYPE html>
 <html lang="en">
