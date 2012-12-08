@@ -1,5 +1,6 @@
 <?php
 require_once 'DirectoryPrinter.php';
+// look for uploads directory out of the web root
 $printer = new DirectoryPrinter('-R ../uploads/');
 ?>
 <!DOCTYPE html>
