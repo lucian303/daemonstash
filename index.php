@@ -125,7 +125,7 @@ $printer = new DirectoryPrinter('-R ../uploads/');
 			</div>
 			<div class="row-fluid">
 				<div class="span12">
-					<?php $printer->printDirectory(); ?>
+					<?php $printer->printMusicDirectory(); ?>
 				</div>
 				<!--				<div class="span4">-->
 				<!--				</div>-->
