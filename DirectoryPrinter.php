@@ -12,13 +12,16 @@ class DirectoryPrinter
 		$this->setDirectoryPattern($directoryPattern);
 	}
 
-	public function printDirectory()
+	public function printMusicDirectory()
 	{
 		$allFiles = $this->getFileArrays();
+		sort($allFiles['musicFiles'], SORT_LOCALE_STRING);
 
 		/** @var $file DirectoryIterator */
 		foreach ($allFiles['musicFiles'] as $file) {
-			print '<a class="music" href="' . $file->getPathname() . '">' . $file->getPathname() . '</a><br />';
+			$directoryPattern = trim(str_replace('-R', '', $this->directoryPattern));
+			$prettyName = str_replace($directoryPattern, '', $file->getPathname());
+			print '<a class="music" href="' . $file->getPathname() . '">' . $prettyName . '</a><br />';
 		}
 	}
 
@@ -28,7 +31,9 @@ class DirectoryPrinter
 
 		/** @var $file DirectoryIterator */
 		foreach (new AdvancedDirectoryIterator($this->directoryPattern) as $file) {
-			$extension = $file->getExtension();
+			$fileInfo = $file->getFileInfo(); // have to do it this way to be php 5.2 compatible
+			$extension = pathinfo($fileInfo->getFilename(), PATHINFO_EXTENSION);
+
 			if (in_array($extension, array('mp3', 'ogg'))) { // need a more complete list of music formats
 				$musicFiles[] = $file;
 			}
