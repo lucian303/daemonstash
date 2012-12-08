@@ -73,7 +73,6 @@ class DirectoryPrinter
 				$otherFiles[] = $file;
 			}
 
-			$file->category = 'unknown';
 			$allFiles[] = $file;
 		}
 
