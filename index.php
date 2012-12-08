@@ -147,10 +147,6 @@ $printer = new DirectoryPrinter('-R ../uploads/');
 					}
 					?>
 				</div>
-				<!--				<div class="span4">-->
-				<!--				</div>-->
-				<!--				<div class="span4">-->
-				<!--				</div>-->
 			</div>
 			<div class="row-fluid">
 			</div>
@@ -167,5 +163,4 @@ $printer = new DirectoryPrinter('-R ../uploads/');
 <script src="assets/js/bootstrap.js"></script>
 
 </body>
-
 </html>

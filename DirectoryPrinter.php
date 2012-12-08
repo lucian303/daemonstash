@@ -36,7 +36,7 @@ class DirectoryPrinter
 		foreach ($allFiles[$type] as $file) {
 			$directoryPattern = trim(str_replace('-R', '', $this->directoryPattern));
 			$prettyName = str_replace($directoryPattern, '', $file->getPathname());
-			print '<a class="'. $type . '" href="' . $file->getPathname() . '">' . $prettyName . '</a><br />';
+			print '<a class="' . $type . '" href="' . $file->getPathname() . '">' . $prettyName . '</a><br />';
 		}
 	}
 
@@ -59,11 +59,7 @@ class DirectoryPrinter
 			$allFiles[] = $file;
 		}
 
-		$return = array(
-			'allFiles' => $allFiles,
-			'musicFiles' => $musicFiles,
-			'otherFiles' => $otherFiles,
-		);
+		$return = array('allFiles' => $allFiles, 'musicFiles' => $musicFiles, 'otherFiles' => $otherFiles);
 
 		return $return;
 	}
