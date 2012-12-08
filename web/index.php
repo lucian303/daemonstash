@@ -1,5 +1,11 @@
 <?php
-require_once 'DirectoryPrinter.php';
+
+// Change working directory to base directory, then we can use getcwd()
+chdir(dirname(__DIR__));
+
+require getcwd() . '/vendor/autoload.php';
+
+require_once getcwd() . '/src/DaemonDash/Directory/DirectoryPrinter.php';
 // look for uploads directory out of the web root
 $printer = new DirectoryPrinter('-R ../uploads/');
 ?>

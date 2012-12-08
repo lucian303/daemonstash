@@ -1,0 +1,59 @@
+{
+    "hash": "0b82a73443ec7205365a75375db4de37",
+    "packages": [
+        {
+            "name": "phansys/getid3",
+            "version": "2.0.0.x-dev",
+            "target-dir": "GetId3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/phansys/GetId3.git",
+                "reference": "ec3847c935d25efc3c0184c691e00399ef9e72f0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://github.com/phansys/GetId3/archive/ec3847c935d25efc3c0184c691e00399ef9e72f0.zip",
+                "reference": "ec3847c935d25efc3c0184c691e00399ef9e72f0",
+                "shasum": ""
+            },
+            "suggest": {
+                "ext-exif": "EXIF extension is required for graphic modules.",
+                "ext-rar": "RAR extension is required for RAR archive module."
+            },
+            "time": "2012-12-04 17:31:30",
+            "type": "library",
+            "installation-source": "source",
+            "autoload": {
+                "psr-0": {
+                    "GetId3": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL"
+            ],
+            "authors": [
+                {
+                    "name": "James Heinrich",
+                    "email": "info@getid3.org",
+                    "homepage": "http://www.getid3.org"
+                }
+            ],
+            "description": "This release of GetId3 library updates to PSR-0 CS, add namespaces and makes it Symfony 2.x installable by deps or composer mechanisms.",
+            "homepage": "http://www.getid3.org",
+            "keywords": [
+                "metadata",
+                "tags",
+                "getid3"
+            ]
+        }
+    ],
+    "packages-dev": null,
+    "aliases": [
+
+    ],
+    "minimum-stability": "stable",
+    "stability-flags": {
+        "phansys/getid3": 20
+    }
+}

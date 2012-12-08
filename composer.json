@@ -1,0 +1,12 @@
+{
+    "name": "lucian303/DaemonDash",
+    "authors": [
+        {
+            "name": "Lucian Hontau",
+            "email": "lucian303@gmail.com"
+        }
+    ],
+    "require": {
+		"phansys/getid3": "v2.0.0.x-dev"
+    }
+}
