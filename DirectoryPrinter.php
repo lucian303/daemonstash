@@ -31,11 +31,11 @@ class DirectoryPrinter
 
 	protected function printDirectory($type)
 	{
-		$allFiles = $this->getFileArrays();
-		sort($allFiles[$type], SORT_LOCALE_STRING);
+		$files = $this->getFileArrays();
+		sort($files[$type], SORT_LOCALE_STRING);
 
 		/** @var $file DirectoryIterator */
-		foreach ($allFiles[$type] as $file) {
+		foreach ($files[$type] as $file) {
 			$directoryPattern = trim(str_replace('-R', '', $this->directoryPattern));
 			$prettyName = str_replace($directoryPattern, '', $file->getPathname());
 			print '<a class="' . $type . '" href="' . $file->getPathname() . '">' . $prettyName . '</a><br />';
