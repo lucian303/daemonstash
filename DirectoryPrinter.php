@@ -25,8 +25,20 @@ class DirectoryPrinter
 
 	public function printAllDirectory()
 	{
-		// TODO: Color each one properly when printing all
-		$this->printDirectory('allFiles');
+		// Get files and combine them, then set a different css class depending on type
+		$files = $this->getFileArrays();
+		$musicFiles = $files['musicFiles'];
+		$otherFiles = $files['otherFiles'];
+		$combinedFiles = array_merge($musicFiles, $otherFiles);
+		sort($combinedFiles, SORT_LOCALE_STRING);
+
+		$directoryPattern = trim(str_replace('-R', '', $this->directoryPattern));
+
+		/** @var $file DirectoryIterator */
+		foreach ($combinedFiles as $file) {
+			$prettyName = str_replace($directoryPattern, '', $file->getPathname());
+			print '<a class="' . $file->category . '" href="' . $file->getPathname() . '">' . $prettyName . '</a><br />';
+		}
 	}
 
 	protected function printDirectory($type)
@@ -34,9 +46,10 @@ class DirectoryPrinter
 		$files = $this->getFileArrays();
 		sort($files[$type], SORT_LOCALE_STRING);
 
+		$directoryPattern = trim(str_replace('-R', '', $this->directoryPattern));
+
 		/** @var $file DirectoryIterator */
 		foreach ($files[$type] as $file) {
-			$directoryPattern = trim(str_replace('-R', '', $this->directoryPattern));
 			$prettyName = str_replace($directoryPattern, '', $file->getPathname());
 			print '<a class="' . $type . '" href="' . $file->getPathname() . '">' . $prettyName . '</a><br />';
 		}
@@ -52,12 +65,15 @@ class DirectoryPrinter
 			$extension = pathinfo($fileInfo->getFilename(), PATHINFO_EXTENSION);
 
 			if (in_array($extension, array('mp3', 'ogg'))) { // need a more complete list of music formats
+				$file->category = 'musicFiles';
 				$musicFiles[] = $file;
 			}
 			else {
+				$file->category = 'otherFiles';
 				$otherFiles[] = $file;
 			}
 
+			$file->category = 'unknown';
 			$allFiles[] = $file;
 		}
 
