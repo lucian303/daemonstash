@@ -141,16 +141,15 @@ $printer = new DirectoryPrinter($searchPath);
 			<div class="hero-unit">
 				<div>
 					<h1>
-						Get the fuck out!
+						Xmas::merry();
 					</h1>
 
 					<p>
-						If you've never been to the DS, don't ever come to the DS, cause you wouldn't
-						understand the DS! -- Oldboy
+						If you've never been to the DS, don't ever come to the DS, cause you wouldn't understand the DS! -- Oldboy
 					</p>
 				</div>
 				<a class="btn btn-primary" href="http://bit.ly/UtgAE8">
-					Get me the fuck out of here before I die;
+					Who put the goat in there?
 				</a>
 			</div>
 			<div class="row-fluid">
@@ -179,7 +178,7 @@ $printer = new DirectoryPrinter($searchPath);
 			<div class="span4">
 			</div>
 			<div>
-				some shit here ...
+				@BennyLava();
 			</div>
 		</div>
 	</div>
