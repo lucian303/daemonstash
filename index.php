@@ -25,7 +25,7 @@ $printer = new DirectoryPrinter($searchPath);
 	<meta name="description" content="">
 	<meta name="author" content="">
 
-	K<link href="assets/css/bootstrap.css" rel="stylesheet">
+	<link href="assets/css/bootstrap.css" rel="stylesheet">
 	<style>
 		body {
 			padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
