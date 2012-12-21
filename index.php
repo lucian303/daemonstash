@@ -27,6 +27,10 @@ $printer = new DirectoryPrinter('-R ../uploads/');
 			color: red;
 			font-weight: bold;
 		}
+		.documentFiles {
+			color: magenta;
+			font-weight: bold;
+		}
 		.otherFiles {
 			color: #006400;
 		}
@@ -138,6 +142,10 @@ $printer = new DirectoryPrinter('-R ../uploads/');
 					switch ($_GET['type']) {
 						case 'music':
 							$printer->printMusicDirectory();
+							break;
+
+						case 'document':
+							$printer->printDocumentDirectory();
 							break;
 
 						case 'other':

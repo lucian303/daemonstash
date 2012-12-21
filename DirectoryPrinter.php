@@ -18,6 +18,11 @@ class DirectoryPrinter
 		$this->printDirectory('musicFiles');
 	}
 
+	public function printDocumentDirectory()
+	{
+		$this->printDirectory('documentFiles');
+	}
+
 	public function printOtherDirectory()
 	{
 		$this->printDirectory('otherFiles');
@@ -57,7 +62,7 @@ class DirectoryPrinter
 
 	protected function getFileArrays()
 	{
-		$allFiles = $musicFiles = $otherFiles = array();
+		$allFiles = $musicFiles = $documentFiles = $otherFiles = array();
 
 		/** @var $file DirectoryIterator */
 		foreach (new AdvancedDirectoryIterator($this->directoryPattern) as $file) {
@@ -68,6 +73,10 @@ class DirectoryPrinter
 				$file->category = 'musicFiles';
 				$musicFiles[] = $file;
 			}
+			else if (in_array($extension, array('pdf', 'doc', 'mobi', 'epub'))) { // need a more complete list of document formats
+				$file->category = 'documentFiles';
+				$documentFiles[] = $file;
+			}
 			else {
 				$file->category = 'otherFiles';
 				$otherFiles[] = $file;
@@ -76,7 +85,12 @@ class DirectoryPrinter
 			$allFiles[] = $file;
 		}
 
-		$return = array('allFiles' => $allFiles, 'musicFiles' => $musicFiles, 'otherFiles' => $otherFiles);
+		$return = array(
+			'allFiles' => $allFiles,
+			'musicFiles' => $musicFiles,
+			'documentFiles' => $documentFiles,
+			'otherFiles' => $otherFiles,
+		);
 
 		return $return;
 	}
