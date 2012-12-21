@@ -32,9 +32,7 @@ class DirectoryPrinter
 	{
 		// Get files and combine them, then set a different css class depending on type
 		$files = $this->getFileArrays();
-		$musicFiles = $files['musicFiles'];
-		$otherFiles = $files['otherFiles'];
-		$combinedFiles = array_merge($musicFiles, $otherFiles);
+		$combinedFiles = array_merge($files['musicFiles'], $files['documentFiles'], $files['otherFiles']);
 		sort($combinedFiles, SORT_LOCALE_STRING);
 
 		$directoryPattern = trim(str_replace('-R', '', $this->directoryPattern));
