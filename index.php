@@ -1,9 +1,19 @@
 <?php
-
 require_once 'DirectoryPrinter.php';
 
-// look for uploads directory out of the web root
-$printer = new DirectoryPrinter('-R ../uploads/');
+// look for uploads directory out of the web root by default
+$searchPath = '-R ../uploads/';
+
+// TODO: Make this read any subdir and process it based on URI
+$pathRequested = parse_url($_SERVER['REQUEST_URI']);
+if ($pathRequested) {
+	$subDirPath = preg_replace('#\/get/#', '', $pathRequested['path']);
+	$searchPath = '-R ../uploads/' . $subDirPath;
+}
+
+//print $searchPath; die;
+
+$printer = new DirectoryPrinter($searchPath);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -14,17 +24,18 @@ $printer = new DirectoryPrinter('-R ../uploads/');
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="description" content="">
 	<meta name="author" content="">
-	<!-- Le styles -->
-	<link href="assets/css/bootstrap.css" rel="stylesheet">
+
+	K<link href="assets/css/bootstrap.css" rel="stylesheet">
 	<style>
 		body {
-			padding-top: 60px;
-			/* 60px to make the container go all the way
-				  to the bottom of the topbar */
+			padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
 		}
-
 		.musicFiles {
 			color: red;
+			font-weight: bold;
+		}
+		.documentFiles {
+			color: magenta;
 			font-weight: bold;
 		}
 		.otherFiles {
@@ -77,6 +88,11 @@ $printer = new DirectoryPrinter('-R ../uploads/');
 						</a>
 					</li>
 					<li>
+						<a href="?type=document">
+							Books &amp; Documents
+						</a>
+					</li>
+					<li>
 						<a href="?type=other">
 							Other
 						</a>
@@ -109,6 +125,11 @@ $printer = new DirectoryPrinter('-R ../uploads/');
 						</a>
 					</li>
 					<li class="">
+						<a href="?type=document">
+							Books &amp; Documents
+						</a>
+					</li>
+					<li class="">
 						<a href="?type=other">
 							Other
 						</a>
@@ -135,19 +156,15 @@ $printer = new DirectoryPrinter('-R ../uploads/');
 			<div class="row-fluid">
 				<div class="span12">
 					<?php
-					switch ($_GET['type']) {
-						case 'music':
-							$printer->printMusicDirectory();
-							break;
+					$allowedTypes = array('music', 'document', 'other', 'all');
+					$type = (string)trim($_GET['type']);
 
-						case 'other':
-							$printer->printOtherDirectory();
-							break;
-
-						case 'all':
-						default:
-							$printer->printAllDirectory();
-							break;
+					if (in_array($type, $allowedTypes)) {
+						$printerControllerMethod = 'print' . ucfirst($type) . 'Directory';
+						$printer->$printerControllerMethod();
+					}
+					else {
+						$printer->printAllDirectory();
 					}
 					?>
 				</div>

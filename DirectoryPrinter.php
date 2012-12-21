@@ -18,6 +18,11 @@ class DirectoryPrinter
 		$this->printDirectory('musicFiles');
 	}
 
+	public function printDocumentDirectory()
+	{
+		$this->printDirectory('documentFiles');
+	}
+
 	public function printOtherDirectory()
 	{
 		$this->printDirectory('otherFiles');
@@ -27,9 +32,7 @@ class DirectoryPrinter
 	{
 		// Get files and combine them, then set a different css class depending on type
 		$files = $this->getFileArrays();
-		$musicFiles = $files['musicFiles'];
-		$otherFiles = $files['otherFiles'];
-		$combinedFiles = array_merge($musicFiles, $otherFiles);
+		$combinedFiles = array_merge($files['musicFiles'], $files['documentFiles'], $files['otherFiles']);
 		sort($combinedFiles, SORT_LOCALE_STRING);
 
 		$directoryPattern = trim(str_replace('-R', '', $this->directoryPattern));
@@ -57,16 +60,20 @@ class DirectoryPrinter
 
 	protected function getFileArrays()
 	{
-		$allFiles = $musicFiles = $otherFiles = array();
+		$allFiles = $musicFiles = $documentFiles = $otherFiles = array();
 
 		/** @var $file DirectoryIterator */
 		foreach (new AdvancedDirectoryIterator($this->directoryPattern) as $file) {
 			$fileInfo = $file->getFileInfo(); // have to do it this way to be php 5.2 compatible
 			$extension = pathinfo($fileInfo->getFilename(), PATHINFO_EXTENSION);
 
-			if (in_array($extension, array('mp3', 'ogg'))) { // need a more complete list of music formats
+			if (in_array($extension, array('mp3', 'ogg', 'flac', 'aac', 'wav', 'aiff'))) { // need a more complete list of music formats
 				$file->category = 'musicFiles';
 				$musicFiles[] = $file;
+			}
+			else if (in_array($extension, array('pdf', 'doc', 'mobi', 'epub', 'docx', 'txt', 'conf', 'ini'))) { // need a more complete list of document formats
+				$file->category = 'documentFiles';
+				$documentFiles[] = $file;
 			}
 			else {
 				$file->category = 'otherFiles';
@@ -76,7 +83,12 @@ class DirectoryPrinter
 			$allFiles[] = $file;
 		}
 
-		$return = array('allFiles' => $allFiles, 'musicFiles' => $musicFiles, 'otherFiles' => $otherFiles);
+		$return = array(
+			'allFiles' => $allFiles,
+			'musicFiles' => $musicFiles,
+			'documentFiles' => $documentFiles,
+			'otherFiles' => $otherFiles,
+		);
 
 		return $return;
 	}
