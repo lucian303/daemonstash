@@ -1,4 +1,5 @@
 <?php
+
 require_once 'RealRecursiveDirectoryIterator.php';
 require_once 'AdvancedDirectoryIterator.php';
 

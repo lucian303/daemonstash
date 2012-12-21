@@ -1,20 +1,3 @@
-<?php
-require_once 'DirectoryPrinter.php';
-
-// look for uploads directory out of the web root by default
-$searchPath = '-R ../uploads/';
-
-// TODO: Make this read any subdir and process it based on URI
-$pathRequested = parse_url($_SERVER['REQUEST_URI']);
-if ($pathRequested) {
-	$subDirPath = preg_replace('#\/get/#', '', $pathRequested['path']);
-	$searchPath = '-R ../uploads/' . $subDirPath;
-}
-
-//print $searchPath; die;
-
-$printer = new DirectoryPrinter($searchPath);
-?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -155,6 +138,11 @@ $printer = new DirectoryPrinter($searchPath);
 			<div class="row-fluid">
 				<div class="span12">
 					<?php
+					require_once 'PrinterSetup.php';
+					// get our "directory model" printer
+					$printer = PrinterSetup::getPrinter();
+
+					// check input, find router and dispatch to appropriate method block
 					$allowedTypes = array('music', 'document', 'other', 'all');
 					$type = (string)trim($_GET['type']);
 
