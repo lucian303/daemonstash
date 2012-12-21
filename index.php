@@ -1,8 +1,8 @@
 <?php
-
 require_once 'DirectoryPrinter.php';
 
 // look for uploads directory out of the web root
+// TODO: Make this read any subdir and process it based on URI
 $printer = new DirectoryPrinter('-R ../uploads/');
 ?>
 <!DOCTYPE html>
@@ -18,9 +18,7 @@ $printer = new DirectoryPrinter('-R ../uploads/');
 	<link href="assets/css/bootstrap.css" rel="stylesheet">
 	<style>
 		body {
-			padding-top: 60px;
-			/* 60px to make the container go all the way
-				  to the bottom of the topbar */
+			padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
 		}
 
 		.musicFiles {
@@ -81,6 +79,11 @@ $printer = new DirectoryPrinter('-R ../uploads/');
 						</a>
 					</li>
 					<li>
+						<a href="?type=document">
+							Books &amp; Documents
+						</a>
+					</li>
+					<li>
 						<a href="?type=other">
 							Other
 						</a>
@@ -110,6 +113,11 @@ $printer = new DirectoryPrinter('-R ../uploads/');
 					<li class="">
 						<a href="?type=music">
 							Music
+						</a>
+					</li>
+					<li class="">
+						<a href="?type=document">
+							Books &amp; Documents
 						</a>
 					</li>
 					<li class="">
