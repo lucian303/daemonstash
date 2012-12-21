@@ -69,11 +69,11 @@ class DirectoryPrinter
 			$fileInfo = $file->getFileInfo(); // have to do it this way to be php 5.2 compatible
 			$extension = pathinfo($fileInfo->getFilename(), PATHINFO_EXTENSION);
 
-			if (in_array($extension, array('mp3', 'ogg'))) { // need a more complete list of music formats
+			if (in_array($extension, array('mp3', 'ogg', 'flac', 'aac', 'wav', 'aiff'))) { // need a more complete list of music formats
 				$file->category = 'musicFiles';
 				$musicFiles[] = $file;
 			}
-			else if (in_array($extension, array('pdf', 'doc', 'mobi', 'epub'))) { // need a more complete list of document formats
+			else if (in_array($extension, array('pdf', 'doc', 'mobi', 'epub', 'docx', 'txt', 'conf', 'ini'))) { // need a more complete list of document formats
 				$file->category = 'documentFiles';
 				$documentFiles[] = $file;
 			}
