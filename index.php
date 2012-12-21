@@ -1,9 +1,19 @@
 <?php
 require_once 'DirectoryPrinter.php';
 
-// look for uploads directory out of the web root
+// look for uploads directory out of the web root by default
+$searchPath = '-R ../uploads/';
+
 // TODO: Make this read any subdir and process it based on URI
-$printer = new DirectoryPrinter('-R ../uploads/');
+$pathRequested = parse_url($_SERVER['REQUEST_URI']);
+if ($pathRequested) {
+	$subDirPath = preg_replace('#\/get/#', '', $pathRequested['path']);
+	$searchPath = '-R ../uploads/' . $subDirPath;
+}
+
+//print $searchPath; die;
+
+$printer = new DirectoryPrinter($searchPath);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -14,8 +24,8 @@ $printer = new DirectoryPrinter('-R ../uploads/');
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="description" content="">
 	<meta name="author" content="">
-	<!-- Le styles -->
-	<link href="assets/css/bootstrap.css" rel="stylesheet">
+
+	K<link href="assets/css/bootstrap.css" rel="stylesheet">
 	<style>
 		body {
 			padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
@@ -147,7 +157,7 @@ $printer = new DirectoryPrinter('-R ../uploads/');
 				<div class="span12">
 					<?php
 					$allowedTypes = array('music', 'document', 'other', 'all');
-					$type = (string) trim($_GET['type']);
+					$type = (string)trim($_GET['type']);
 
 					if (in_array($type, $allowedTypes)) {
 						$printerControllerMethod = 'print' . ucfirst($type) . 'Directory';
