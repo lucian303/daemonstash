@@ -139,20 +139,12 @@
 				<div class="span12">
 					<?php
 					require_once 'PrinterSetup.php';
-					// get our "directory model" printer
+					require_once 'RouterDispatcher.php';
+
+					// get our printer service
 					$printer = PrinterSetup::getPrinter();
-
-					// check input, find router and dispatch to appropriate method block
-					$allowedTypes = array('music', 'document', 'other', 'all');
-					$type = (string)trim($_GET['type']);
-
-					if (in_array($type, $allowedTypes)) {
-						$printerControllerMethod = 'print' . ucfirst($type) . 'Directory';
-						$printer->$printerControllerMethod();
-					}
-					else {
-						$printer->printAllDirectory();
-					}
+					// check input, find router and dispatch to appropriate method block using the printer "service"
+					RouterDispatcher::go($printer);
 					?>
 				</div>
 			</div>
