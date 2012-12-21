@@ -20,7 +20,6 @@ $printer = new DirectoryPrinter('-R ../uploads/');
 		body {
 			padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
 		}
-
 		.musicFiles {
 			color: red;
 			font-weight: bold;
@@ -147,23 +146,15 @@ $printer = new DirectoryPrinter('-R ../uploads/');
 			<div class="row-fluid">
 				<div class="span12">
 					<?php
-					switch ($_GET['type']) {
-						case 'music':
-							$printer->printMusicDirectory();
-							break;
+					$allowedTypes = array('music', 'document', 'other', 'all');
+					$type = (string) trim($_GET['type']);
 
-						case 'document':
-							$printer->printDocumentDirectory();
-							break;
-
-						case 'other':
-							$printer->printOtherDirectory();
-							break;
-
-						case 'all':
-						default:
-							$printer->printAllDirectory();
-							break;
+					if (in_array($type, $allowedTypes)) {
+						$printerControllerMethod = 'print' . ucfirst($type) . 'Directory';
+						$printer->$printerControllerMethod();
+					}
+					else {
+						$printer->printAllDirectory();
 					}
 					?>
 				</div>
