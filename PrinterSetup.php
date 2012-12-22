@@ -16,7 +16,7 @@ class PrinterSetup
 		// TODO: change from hardcoded to /get/ as the base insall
 		$pathRequested = parse_url($_SERVER['REQUEST_URI']);
 		if ($pathRequested) {
-			$subDirPath = preg_replace('#\/get/#', '', $pathRequested['path']);
+			$subDirPath = preg_replace('#\/\S*/#', '', $pathRequested['path']);
 			$searchPath = '-R ../uploads/' . $subDirPath;
 		}
 
