@@ -11,3 +11,5 @@ AuthType Basic
 	RewriteRule ^.*$ - [NC,L]
 	RewriteRule ^.*$ index.php [NC,L]
 </IfModule>
+
+AddHandler application/x-httpd-php53 .php
