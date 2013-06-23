@@ -124,7 +124,7 @@
 			<div class="hero-unit">
 				<div>
 					<h1>
-						Xmas::merry();
+						Willkommen
 					</h1>
 
 					<p>
